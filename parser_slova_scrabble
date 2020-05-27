@@ -1,0 +1,42 @@
+#парсер тащит с сайта "http://www.allscrabblewords.com/ парсим слова состоящие из 2 символов
+#записывая в xml файл
+import requests
+from lxml import  etree
+import lxml.html
+import openpyxl # для работы с exel (чтение запись файлов) (wb.open,wb.save,wb.create итд)
+
+def parse(url):
+    try:
+        api = requests.get(url)
+    except:
+        return
+    tree = lxml.html.document_fromstring(api.text)
+    #парсим перевод
+    words = tree.xpath('/html/body/div[4]/div[1]/div[1]/div[1]/div[2]/ul/li/a/text()')
+    return (words)
+
+def main():
+    #парсим с сайте слова из 2ух символов
+    url=("http://www.allscrabblewords.com/{number}-letter-words/") #в оригинальной
+    #ссылке цифра 2 но мы место 2 пишем number так как все слова
+    i=2
+    wb=openpyxl.Workbook() # создаем xl книгу
+    # при создании книги, автомом создается первая страница sheet, тут удаляем
+    wb.remove(wb['Sheet'])
+    while i<=12:
+        words=parse(url.format(number=i))#пробегаем по страницам
+        wb.create_sheet(title='Page {number}'.format(number=i)) #создаем страницу
+        sheet=wb['Page {number}'.format(number=i)] #пробегаем по страницам
+        for word in words:
+            cell = sheet.cell(row=words.index(word)+1,column=1)#записываем в exel, row-строка,column-столбец
+            cell.value=word
+        #print(words) вывести слова
+        i+=1 #  i=i+1
+    wb.save('primer.xls') #сохраняем в файл
+    # если бы на сайте были слова с 1 буквы то подошел бы цикл ниже вместо while
+    #for i in range(12): #12 страниц
+    #    word = parse(url.format(number=i+1))
+    #    print(words)
+
+if __name__=="__main__":
+    main()
