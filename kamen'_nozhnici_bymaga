@@ -1,0 +1,29 @@
+import random
+choices = ["камень","ножницы","бумага"]
+print("Камень давит ножницы.Ножницы режут бумагу.Бумага накрывает камень")
+player = input("Выберите:камень, ножницы, бумага или Выйти?")
+while player!= "Выйти": #играть пока юзер не выйдет
+    player = player.lower()#меняем ввод юзера на нижний регистр
+    computer = random.choice(choices)#выбрать один из предметов
+    print("Твой выбор " +player+ ", компьютер выбрал " +computer+".")
+    if player == computer:
+        print("Ничья!")
+    elif player == "камень":
+        if computer == "ножницы":
+            print("Вы победили!")
+        else:
+            print("Победил компьютер!")
+    elif player == "бумага":
+        if computer == "камень":
+            print("Вы победили!")
+        else:
+            print("Победил компьютер!")
+    elif player == "ножницы":
+        if computer == "бумага":
+            print("Вы победили!")
+        else:
+            print("Победил компьютер!")
+    else:
+        print("Кажется произошла ошибка...")
+    print() #пропускаем строку
+    player = input("Выберите: камень, ножницы, бумага или Выйти?")
