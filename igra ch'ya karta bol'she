@@ -1,0 +1,19 @@
+import random
+suits=["пики","бубны","черви","крести"]
+faces=["двойка","тройка","четверка","пятерка","шестерка","семерка","восьмерка","девятка","десятка","валет","дама","король","туз"]
+keep_going=True   ### пока жмем энтер игра продолжается, это внизу ещё допишем
+while keep_going:
+    my_face=random.choice(faces)
+    my_suit=random.choice(suits)
+    your_face=random.choice(faces)
+    your_suit=random.choice(suits)
+    print("У меня",my_face," ",my_suit)
+    print("У вас",your_face," ",your_suit)
+    if faces.index(my_face)>faces.index(your_face):  ### сравниваем значение индексов
+        print("I WIN!!!")
+    elif faces.index(my_face)<faces.index(your_face):
+        print("you win")
+    else:
+        print("ничья!")
+    answer=input("Жмите Enter, чтобы продолжить или любую клавишу чтоб выйти: ")
+    keep_going=(answer=="") ### если жмем энтер то игра продолжается
