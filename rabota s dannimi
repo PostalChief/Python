@@ -1,0 +1,23 @@
+# СВЕРКА 1
+# # # сверяем два листа одного и того же файла эксель по ключ-столбцу и выгружаем в отдельный файл результаты
+# import pandas as pd
+# source1_df = pd.read_excel('/Users/a18601396/Desktop/айди.xlsx', sheet_name='Лист1') #лист с айди (тут только айди школ к которым нужно добавить данные второго листа)
+# source2_df = pd.read_excel('/Users/a18601396/Desktop/айди.xlsx', sheet_name='Лист2') #лист с данными по всем
+# joined_df = source1_df.merge(source2_df, on='identifier', how='left') # identifier это ключ столбец как в sql
+# joined_df.to_excel('/Users/a18601396/Desktop/Сверка.xlsx') # вывод результата в отдельный файл
+
+# СВЕРКА 2
+# # сверяем два эксель и csv файлы и выводим результат в другой эксель файл
+# если поменять вконце кода строчку на joined_df.to_csv('/Users/a18601396/Desktop/Сверка.csv')  то вывод
+# будет в цсв файл (кстати можно добавить еще разделить столбцов в цсв через sep (df = pd.read_csv('filename.csv', sep=','))
+# import pandas as pd
+# source1_df = pd.read_excel('/Users/a18601396/Desktop/айди.xlsx', sheet_name='Лист1') #лист с айди (тут только айди школ к которым нужно добавить данные второго листа)
+# source2_df = pd.read_csv('/Users/a18601396/Desktop/директоры.csv') #лист с данными по всем
+# joined_df = source1_df.merge(source2_df, on='identifier', how='left') # identifier это ключ столбец как в sql
+# joined_df.to_excel('/Users/a18601396/Desktop/Сверка.exel')# вывод результата в отдельный файл
+
+# попробовать не на маке, должен появиться график по данному файлу
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# source1_df = pd.read_excel('/Users/a18601396/Desktop/айди.xlsx', sheet_name='Лист1') #лист с айди (тут только айди школ к которым нужно добавить данные второго листа)
+# plt.show()
